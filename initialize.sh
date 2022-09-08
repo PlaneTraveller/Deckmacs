@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-
-#!/usr/bin/env bash
-
 # ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
 # xhost + $ip
 # display_number=`ps -ef | grep "Xquartz :\d" | grep -v xinit | awk '{ print $9; }'`

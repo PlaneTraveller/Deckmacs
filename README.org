@@ -2,14 +2,58 @@
 #+AUTHOR: Plane Traveller
 
 * Table of Contents :TOC:
-- [[#materials][Materials]]
-- [[#introduction][Introduction]]
+- [[#notable-materials][Notable Materials]]
+- [[#what-is-this][What is this?]]
+- [[#how-to-install][How to install?]]
+  - [[#install-docker][Install docker]]
+  - [[#installing-doom-emacs][Installing doom emacs]]
+- [[#how-to-use][How to use?]]
 
-* Materials
+* Notable Materials
 - [[https://github.com/JAremko/docker-emacs][JAremko's docker-emacs using XQuartz]]
 - [[https://github.com/AfsmNGhr/dockemacs][DockemacsNOX]]
 - [[https://github.com/Silex/docker-emacs][Silex/docker-emacs]]
 
-* Introduction
-- This is a containerized editing machine. Basically, Emacs lives inside of Arch Linux, containerized.
-  open -a XQuartz
+* What is this?
+/Note: I'm using Macbook Pro 16,4 for this build. Any intel mac with xquartz should work fine, but nothing is tested!/
+
+This is a containerized editing machine. Basically, Emacs lives inside of Arch Linux, containerized. Doom is wonderful, so I use it as the basis of config.
+
+* How to install?
+** Install docker
+<WIP>
+
+** Installing doom emacs
+ First, clone the repo:
+
+#+begin_src bash
+git clone https://github.com/PlaneTraveller/Deckmacs.git <place-you-wanna-put>
+cd <place-you-wanna-put>
+#+end_src
+
+Then, build the docker image:
+<WIP>: Utilizing build params
+
+#+begin_src bash
+docker build -t deckmacs . --progress plain
+#+end_src
+
+*** Fresh doom install
+If you're a new doom user, or you prefer starting from vanilla, simply run:
+
+#+begin_src bash
+sh initialization.sh
+#+end_src
+
+This will generate a new home directory for your user (as well as doom configuration) and move it to a local bind volume on the host machine: ~./home~. Keep in mind that the image is removed after the run completes. So the purpose of this script is to generate a working ~./home~ for you.
+
+After the run completes, you can start by editing ~./home~ to customize your deckmacs and start your ~descent~.... When you're ready, simply run ~run.sh~ to open an xQuartz window running your fresh install of ~doom emacs~
+
+*** Migrating your config
+<WIP> If you're a doom emacs veteran, simply point the path to your config (DOOMDIR) to ~run.sh~. It will copy your beloved config to ~/home/<usrname>/Literacy/Descent~ and run ~doom sync~. If no parameter is provided, config inside ~Descent~ will be used.
+
+* How to use?
+After the container is constructed, simply use ~docker start~ to start doom emacs.
+#+begin_src bash
+docker start DockedEmacs
+#+end_src
